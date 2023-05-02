@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,12 +15,15 @@ const Register = () => {
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [error, setError] = useState(null);
   const { createUserWithEmail } = useContext(AuthContext);
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
+  const navigate = useNavigate();
   const regex = new RegExp(
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/
   );
   const handleRegister = (e) => {
     console.log(email);
-    
+
     e.preventDefault();
     if (password !== confirmPassword) {
       setError("Passwords do not match");
@@ -36,9 +40,19 @@ const Register = () => {
     setError("");
     createUserWithEmail(email, password)
       .then((result) => {
+        Swal.fire({
+          icon: "success",
+          title: "Sign in success",
+        });
+        navigate(from, { replace: true });
         console.log(result);
       })
       .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
         console.log(error);
       });
   };

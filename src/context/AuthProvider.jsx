@@ -21,35 +21,49 @@ const AuthProvider = ({ children }) => {
   const githubAuthProvider = new GithubAuthProvider();
 
   const signInWithGoogle = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleAuthProvider);
   };
   // Github SignIn
   const signInWithGithub = () => {
+    setLoading(true);
     return signInWithPopup(auth, githubAuthProvider);
   };
   // SignOut
   const handleSignOut = () => {
+    setLoading(true);
     return signOut(auth);
   };
   //create user email
-  const createUserWithEmail = (email,password) => {
+  const createUserWithEmail = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
-// login user email
-  const loginWithEmailPassword = (email,password) => {
+  // login user email
+  const loginWithEmailPassword = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   // Observer
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
     });
     return () => {
       return unsubscribe;
     };
   }, []);
 
-  const authInfo = { user, signInWithGoogle, signInWithGithub, handleSignOut, createUserWithEmail, loginWithEmailPassword };
+  const authInfo = {
+    user,
+    signInWithGoogle,
+    signInWithGithub,
+    handleSignOut,
+    createUserWithEmail,
+    loginWithEmailPassword,
+    loading,
+  };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );

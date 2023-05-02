@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -16,8 +17,20 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     loginWithEmailPassword(email, password)
-      .then((result) => navigate(from, { replace: true }))
+      .then((result) => {
+        Swal.fire({
+          icon: "success",
+          title: "Sign in success",
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
+      })
       .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
         let errorMessage;
 
         switch (error.code) {
@@ -43,10 +56,38 @@ const Login = () => {
   };
 
   const handleGoogleSignIn = () => {
-    signInWithGoogle().then((result) => navigate(from, { replace: true }));
+    signInWithGoogle()
+      .then((result) => {
+        Swal.fire({
+          icon: "success",
+          title: "Sign in success",
+        });
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
+      });
   };
   const handleGithubSignIn = () => {
-    signInWithGithub().then((result) => navigate(from, { replace: true }));
+    signInWithGithub()
+      .then((result) => {
+        Swal.fire({
+          icon: "success",
+          title: "Sign in success",
+        });
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
+      });
   };
   return (
     <>
@@ -93,11 +134,16 @@ const Login = () => {
                 </button>
               </div>
             </div>
-            {error && <p className="text-red-600 my-1 font-semibold"> {error} </p>}
+            {error && (
+              <p className="text-red-600 my-1 font-semibold"> {error} </p>
+            )}
             <div className="flex items-center justify-between flex-wrap text-center">
               <div className="form-control">
                 <label className="cursor-pointer label justify-normal md:gap-x-2 text-center">
-                  <input type="checkbox" className="checkbox checkbox-primary" />
+                  <input
+                    type="checkbox"
+                    className="checkbox checkbox-primary"
+                  />
                   <span className="label-text px-1"> Remember me</span>
                 </label>
               </div>
@@ -111,23 +157,15 @@ const Login = () => {
               <button type="submit" className="btn btn-primary w-full">
                 Log in
               </button>
-              <button
-                onClick={handleGoogleSignIn}
-                type="submit"
-                className="btn  w-full"
-              >
-                <FaGoogle /> Login With Google
-              </button>
-
-              <button
-                onClick={handleGithubSignIn}
-                type="submit"
-                className="btn  w-full"
-              >
-                <FaGithub /> Login With Github
-              </button>
             </div>
           </form>
+          <button onClick={handleGoogleSignIn} className="btn  w-full">
+            <FaGoogle /> Login With Google
+          </button>
+
+          <button onClick={handleGithubSignIn} className="btn  w-full">
+            <FaGithub /> Login With Github
+          </button>
           <div>
             <h2>
               Don't have an account?{" "}

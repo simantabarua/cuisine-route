@@ -11,6 +11,10 @@ const Navbar = ({ toggleLeftNav }) => {
     setIsMenuOpen(!isMenuOpen);
   };
   const { user, handleSignOut } = useContext(AuthContext);
+  const { displayName, email, photoURL } = user || {}
+  console.log(photoURL);
+  
+  const tooltip = displayName || email;
   const menuLinks = links.map(({ label, path }) => (
     <li key={path}>
       <NavLink to={path}>{label}</NavLink>
@@ -40,7 +44,20 @@ const Navbar = ({ toggleLeftNav }) => {
       </div>
       <div className="navbar-end gap-2">
         {user ? (
-          <button onClick={handleSignOut} className="btn btn-primary">Logout</button>
+          <div className="flex gap-1 items-center">
+            <abbr title={tooltip}>
+              <div className="rounded-full border border-black w-14 h-14 cursor-pointer flex justify-center items-center">
+              {photoURL ? (
+                <img className="rounded-full" src={photoURL} alt=""  />
+                ) : (
+                  <FaUser className="w-10 h-10 " />
+                )}
+              </div>
+            </abbr>
+            <button onClick={handleSignOut} className="btn btn-primary">
+              Logout
+            </button>
+          </div>
         ) : (
           <Link to="/login">
             <button className="btn btn-primary">Login</button>{" "}
