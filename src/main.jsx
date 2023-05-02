@@ -9,6 +9,7 @@ import AuthProvider from "./context/AuthProvider.jsx";
 import Blogs from "./pages/Blogs/Blogs.jsx";
 import Register from "./pages/Register/Register.jsx";
 import Login from "./pages/Login/Login.jsx";
+import Home from "./pages/Home/Home.jsx";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: "home",
+        element: <Home />,
       },
       {
         path: "blogs",
@@ -26,12 +27,12 @@ const router = createBrowserRouter([
       },
       {
         path: "register",
-        element: <Register/>
+        element: <Register />,
       },
       {
         path: "login",
-        element: <Login/>
-      }
+        element: <Login />,
+      },
     ],
   },
 ]);

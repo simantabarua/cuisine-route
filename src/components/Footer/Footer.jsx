@@ -2,7 +2,7 @@ import { FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div className=" p-4 md:p-10 bg-base-200 font-medium flex flex-col md:flex-row justify-center md:justify-around text-center items-center mt-5 gap-5 leading-9">
+    <div className="p-4 md:p-10 bg-base-200 font-medium flex flex-col md:flex-row justify-center md:justify-around text-center items-center mt-5 gap-5 leading-9">
       <div>
         <p className="text-2xl font-bold">Cuisine Route</p>
         <p>Providing reliable tech since 1992</p>
