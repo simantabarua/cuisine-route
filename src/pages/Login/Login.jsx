@@ -1,13 +1,53 @@
 import React, { useContext, useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { signInWithGoogle, signInWithGithub, loginWithEmailPassword } =
+    useContext(AuthContext);
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
+  const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
+    loginWithEmailPassword(email, password)
+      .then((result) => navigate(from, { replace: true }))
+      .catch((error) => {
+        let errorMessage;
+
+        switch (error.code) {
+          case "auth/invalid-email":
+            errorMessage = "Invalid email address";
+            break;
+          case "auth/user-disabled":
+            errorMessage = "This account has been disabled";
+            break;
+          case "auth/user-not-found":
+            errorMessage = "User not found";
+            break;
+          case "auth/wrong-password":
+            errorMessage = "Incorrect password try again";
+            break;
+          default:
+            errorMessage = error.message;
+            break;
+        }
+
+        setError(errorMessage);
+      });
   };
 
+  const handleGoogleSignIn = () => {
+    signInWithGoogle().then((result) => navigate(from, { replace: true }));
+  };
+  const handleGithubSignIn = () => {
+    signInWithGithub().then((result) => navigate(from, { replace: true }));
+  };
   return (
     <>
       <div className=" flex flex-col items-center justify-center bg-gray-50 md:py-12 px-4 sm:px-6 lg:px-8">
@@ -26,6 +66,9 @@ const Login = () => {
                 type="email"
                 placeholder="email"
                 className="input input-bordered"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                required
               />
             </div>
             <div className="form-control ">
@@ -37,6 +80,9 @@ const Login = () => {
                   type={showPassword ? "text" : "password"}
                   placeholder="password"
                   className="input input-bordered w-full"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  required
                 />
                 <button
                   className="absolute right-2 inset-y-0"
@@ -47,11 +93,11 @@ const Login = () => {
                 </button>
               </div>
             </div>
-
+            {error && <p className="text-red-600 my-1 font-semibold"> {error} </p>}
             <div className="flex items-center justify-between flex-wrap text-center">
               <div className="form-control">
                 <label className="cursor-pointer label justify-normal md:gap-x-2 text-center">
-                  <input type="checkbox" className="checkbox checkbox-error" />
+                  <input type="checkbox" className="checkbox checkbox-primary" />
                   <span className="label-text px-1"> Remember me</span>
                 </label>
               </div>
@@ -61,9 +107,24 @@ const Login = () => {
                 </a>
               </div>
             </div>
-            <div>
+            <div className="flex flex-col gap-2">
               <button type="submit" className="btn btn-primary w-full">
                 Log in
+              </button>
+              <button
+                onClick={handleGoogleSignIn}
+                type="submit"
+                className="btn  w-full"
+              >
+                <FaGoogle /> Login With Google
+              </button>
+
+              <button
+                onClick={handleGithubSignIn}
+                type="submit"
+                className="btn  w-full"
+              >
+                <FaGithub /> Login With Github
               </button>
             </div>
           </form>

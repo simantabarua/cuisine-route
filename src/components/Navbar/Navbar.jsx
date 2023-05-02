@@ -10,7 +10,7 @@ const Navbar = ({ toggleLeftNav }) => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-  const { user } = useContext(AuthContext);
+  const { user, handleSignOut } = useContext(AuthContext);
   const menuLinks = links.map(({ label, path }) => (
     <li key={path}>
       <NavLink to={path}>{label}</NavLink>
@@ -40,7 +40,7 @@ const Navbar = ({ toggleLeftNav }) => {
       </div>
       <div className="navbar-end gap-2">
         {user ? (
-          <button className="btn btn-primary">Logout</button>
+          <button onClick={handleSignOut} className="btn btn-primary">Logout</button>
         ) : (
           <Link to="/login">
             <button className="btn btn-primary">Login</button>{" "}

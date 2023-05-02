@@ -16,9 +16,9 @@ const Banner = () => {
     },
     navigation: true,
     autoplay: {
-      delay: 2500,
+      delay: 2000,
     },
-    modules: [EffectFade, Pagination, Navigation, Parallax, Autoplay],
+    modules: [EffectFade, Pagination, Navigation, Autoplay],
   };
   const slides = [
     {

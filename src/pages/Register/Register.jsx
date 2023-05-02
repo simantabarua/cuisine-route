@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { AuthContext } from "../../context/AuthProvider";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -12,12 +13,14 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [error, setError] = useState(null);
+  const { createUserWithEmail } = useContext(AuthContext);
   const regex = new RegExp(
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/
   );
   const handleRegister = (e) => {
+    console.log(email);
+    
     e.preventDefault();
-
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       console.log("not match");
@@ -31,8 +34,13 @@ const Register = () => {
       return;
     }
     setError("");
-
-    // continue with registration process
+    createUserWithEmail(email, password)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
