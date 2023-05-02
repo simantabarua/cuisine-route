@@ -42,7 +42,9 @@ const Navbar = ({ toggleLeftNav }) => {
         {user ? (
           <button className="btn btn-primary">Logout</button>
         ) : (
-          <button className="btn btn-primary">Login</button>
+          <Link to="/login">
+            <button className="btn btn-primary">Login</button>{" "}
+          </Link>
         )}
       </div>
     </div>
