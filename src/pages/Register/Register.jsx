@@ -4,17 +4,19 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthProvider";
 import Swal from "sweetalert2";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [name, setName] = useState("");
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
+  const [photoLink, setPhotoLink] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
-  const [error, setError] = useState(null);
-  const { createUserWithEmail } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const { createUserWithEmail, auth, setLoading } = useContext(AuthContext);
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
   const navigate = useNavigate();
@@ -22,8 +24,6 @@ const Register = () => {
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/
   );
   const handleRegister = (e) => {
-    console.log(email);
-
     e.preventDefault();
     if (password !== confirmPassword) {
       setError("Passwords do not match");
@@ -37,24 +37,43 @@ const Register = () => {
       console.log("rex not match");
       return;
     }
-    setError("");
     createUserWithEmail(email, password)
-      .then((result) => {
+      .then((userCredential) => {
+        updateProfile(auth.currentUser, {
+          displayName: userName,
+          photoURL: photoLink,
+        });
         Swal.fire({
           icon: "success",
           title: "Sign in success",
         });
         navigate(from, { replace: true });
-        console.log(result);
       })
       .catch((error) => {
+        setLoading(false);
+        let errorMessage = "";
+        switch (error.code) {
+          case "auth/email-already-in-use":
+            errorMessage = "Email address is already in use.";
+            break;
+          case "auth/invalid-email":
+            errorMessage = "Invalid email address.";
+            break;
+          case "auth/weak-password":
+            errorMessage = "Password should be at least 6 characters long.";
+            break;
+          default:
+            errorMessage = error.message;
+            break;
+        }
+        setError(errorMessage);
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Something went wrong!",
+          text: `${errorMessage}`,
         });
-        console.log(error);
       });
+    // Handle errors here
   };
 
   return (
@@ -75,9 +94,21 @@ const Register = () => {
                 type="text"
                 placeholder="name"
                 className="input input-bordered"
-                value={name}
-                onChange={(event) => setName(event.target.value)}
+                value={userName}
+                onChange={(event) => setUserName(event.target.value)}
                 required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Photo Url</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Photo url"
+                className="input input-bordered"
+                value={photoLink}
+                onChange={(event) => setPhotoLink(event.target.value)}
               />
             </div>
             <div className="form-control">
@@ -137,7 +168,6 @@ const Register = () => {
                 </button>
               </div>
             </div>
-            {error && <p className="text-red-500">{error}</p>}
             <div className="flex items-center justify-between">
               <div className="form-control">
                 <label className="cursor-pointer label justify-normal gap-x-2">
@@ -168,14 +198,15 @@ const Register = () => {
               </button>
             </div>
           </form>
-          <dir>
+          <p className="text-red-600 my-1 font-semibold"> {error} </p>
+          <div>
             <h2>
               Already have an account?
               <button className="btn-link">
                 <Link to="login"> Click here to Login</Link>
               </button>
             </h2>
-          </dir>
+          </div>
         </div>
       </div>
     </>

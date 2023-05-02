@@ -9,7 +9,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { signInWithGoogle, signInWithGithub, loginWithEmailPassword } =
+  const { signInWithGoogle, signInWithGithub, loginWithEmailPassword, setLoading } =
     useContext(AuthContext);
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
@@ -26,11 +26,7 @@ const Login = () => {
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
-        });
+        setLoading(false)
         let errorMessage;
 
         switch (error.code) {
@@ -50,8 +46,12 @@ const Login = () => {
             errorMessage = error.message;
             break;
         }
-
         setError(errorMessage);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${errorMessage}`,
+        });
       });
   };
 
@@ -65,6 +65,7 @@ const Login = () => {
         navigate(from, { replace: true });
       })
       .catch((error) => {
+        setLoading(false)
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -82,6 +83,7 @@ const Login = () => {
         navigate(from, { replace: true });
       })
       .catch((error) => {
+        setLoading(false)
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -134,9 +136,7 @@ const Login = () => {
                 </button>
               </div>
             </div>
-            {error && (
-              <p className="text-red-600 my-1 font-semibold"> {error} </p>
-            )}
+
             <div className="flex items-center justify-between flex-wrap text-center">
               <div className="form-control">
                 <label className="cursor-pointer label justify-normal md:gap-x-2 text-center">
@@ -159,6 +159,9 @@ const Login = () => {
               </button>
             </div>
           </form>
+          {error && (
+            <p className="text-red-600 my-1 font-semibold"> {error} </p>
+          )}
           <button onClick={handleGoogleSignIn} className="btn  w-full">
             <FaGoogle /> Login With Google
           </button>
