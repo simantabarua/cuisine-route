@@ -23,8 +23,8 @@ const ChefRecipes = () => {
 
   return (
     <>
-      <ChefInfo />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3  gap-5 md:px-3 lg:px-6 place-items-center">
+      <ChefInfo chef={chef} />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:px-3 lg:px-6 place-items-center my-5">
         {recipes.map((recipe, index) => (
           <RecipeCard key={recipe.recipeId} recipe={recipe} />
         ))}
