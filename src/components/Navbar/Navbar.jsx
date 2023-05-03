@@ -12,7 +12,6 @@ const Navbar = ({ toggleLeftNav }) => {
   };
   const { user, handleSignOut } = useContext(AuthContext);
   const { displayName, email, photoURL } = user || {}
-  console.log(photoURL);
   
   const tooltip = displayName || email;
   const menuLinks = links.map(({ label, path }) => (

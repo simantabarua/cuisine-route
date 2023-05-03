@@ -1,20 +1,44 @@
 import React from "react";
-
-const ChefCard = () => {
+import { GiCook, GiRiceCooker } from "react-icons/gi";
+import { BiLike } from "react-icons/bi";
+import { Link } from "react-router-dom";
+const ChefCard = ({ chef }) => {
+  const {
+    id,
+    chefName,
+    cuisine,
+    chefImage,
+    chefExperience,
+    recipes_count,
+    likes,
+  } = chef;
   return (
     <>
-      <div className="card card-compact w-96 bg-base-100 shadow-xl">
+      <div className="card card-compact w-full md:w-[23rem] lg:w-96 bg-base-100 shadow-xl ">
         <figure>
-          <img
-            src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-            alt="Shoes"
-          />
+          <img src={chefImage} alt={chefName} />
         </figure>
-        <div className="card-body">
-          <h2 className="card-title">Shoes!</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
+        <div className="card-body font-semibold text-gray-500">
+          <h2 className="card-title font-xl text-gray-800 ">
+            <GiCook /> {chefName}
+          </h2>
+          <p>Cuisine: {cuisine}</p>
+          <p>Experience: {chefExperience} years</p>
+          <div className="flex  items-center">
+            <p className="flex gap-1 items-center">
+              <GiRiceCooker className="w-6 h-6" /> {recipes_count} Recipes
+            </p>
+            <p className="flex gap-1  items-center">
+              <BiLike className="w-6 h-6" /> {likes} Likes
+            </p>
+          </div>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
+            <Link to={`/chef/${id}`}>
+              {" "}
+              <button className="btn btn-primary w-full btn-sm normal-case ">
+                View Recipes
+              </button>{" "}
+            </Link>
           </div>
         </div>
       </div>
@@ -24,11 +48,13 @@ const ChefCard = () => {
 
 export default ChefCard;
 
-<Rating
+{
+  /* <Rating
   className="text-2xl"
   readonly
   placeholderRating={number}
   emptySymbol={<HiOutlineStar className="text-yellow-600  " />}
   placeholderSymbol={<HiStar className="text-yellow-600" />}
   fullSymbol={<HiStar />}
-/>;
+/>; */
+}
