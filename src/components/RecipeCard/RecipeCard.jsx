@@ -1,7 +1,9 @@
-import React from "react";
-import { HiOutlineBookmark } from "react-icons/hi";
+import React, { useState } from "react";
+import { BsBookmarkCheck, BsBookmarkDash } from "react-icons/bs";
+import Swal from "sweetalert2";
 
 const RecipeCard = ({ recipe }) => {
+  const [disabled, setDisabled] = useState(false);
   const {
     recipeId,
     recipeName,
@@ -10,6 +12,15 @@ const RecipeCard = ({ recipe }) => {
     cooking_method,
     rating,
   } = recipe;
+
+  const handleDisable = () => {
+    setDisabled(true);
+    Swal.fire({
+      icon: "success",
+      title: "Bookmarked",
+      timer: 1500,
+    });
+  };
   return (
     <>
       <div className="card card-compact  w-full my-5  shadow-xl p-2 md:p-5 ">
@@ -34,11 +45,19 @@ const RecipeCard = ({ recipe }) => {
         </p>
         <div className="card-actions flex justify-between items-center ">
           <button className="btn btn-primary  btn-sm normal-case ">
-            View Recipes
+            View Recipe
           </button>
           <div className="tooltip" data-tip="Add to bookmark">
-            <button className="btn btn-ghost">
-              <HiOutlineBookmark className="w-6 h-6" />{" "}
+            <button
+              onClick={handleDisable}
+              className="btn btn-ghost"
+              disabled={disabled}
+            >
+              {disabled ? (
+                <BsBookmarkCheck className="w-6 h-6"  />
+              ) : (
+                <BsBookmarkDash className="w-6 h-6" />
+              )}
             </button>
           </div>
         </div>

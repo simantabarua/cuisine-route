@@ -50,6 +50,10 @@ const Testimonials = () => {
               slidesPerView: 2,
               spaceBetween: 20,
             },
+            1200: {
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
           }}
           className=" absolute top-0 left-0 w-full h-full "
         >

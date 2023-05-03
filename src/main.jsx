@@ -1,18 +1,22 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import MainLayout from "./layout/MainLayout.jsx";
-import Error from "./pages/ErrorPage/ErrorPage.jsx";
 import AuthProvider from "./context/AuthProvider.jsx";
-import Blogs from "./pages/Blogs/Blogs.jsx";
-import Register from "./pages/Register/Register.jsx";
-import Login from "./pages/Login/Login.jsx";
-import Home from "./pages/Home/Home.jsx";
-import PrivateRoute from "./privateRoute/PrivateRoute.jsx";
-import ChefRecipes from "./pages/ChefRecipes/ChefRecipes.jsx";
-import About from "./pages/About/About.jsx";
-
+import MainLayout from "./layout/MainLayout.jsx";
+import Loading from "./components/Loading/Loading";
+const Error = React.lazy(() => import("./pages/ErrorPage/ErrorPage.jsx"));
+const Blogs = React.lazy(() => import("./pages/Blogs/Blogs.jsx"));
+const Register = React.lazy(() => import("./pages/Register/Register.jsx"));
+const Login = React.lazy(() => import("./pages/Login/Login.jsx"));
+const PrivateRoute = React.lazy(() =>
+  import("./privateRoute/PrivateRoute.jsx")
+);
+const About = React.lazy(() => import("./pages/About/About.jsx"));
+const Home = React.lazy(() => import("./pages/Home/Home.jsx"));
+const ChefRecipes = React.lazy(() =>
+  import("./pages/ChefRecipes/ChefRecipes.jsx")
+);
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,32 +25,54 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Home />
+          </Suspense>
+        ),
         loader: () => fetch("http://localhost:3000/chefData"),
       },
       {
         path: "blogs",
-        element: <Blogs />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Blogs />
+          </Suspense>
+        ),
       },
       {
         path: "about",
-        element: <About />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <About />
+          </Suspense>
+        ),
       },
       {
         path: "register",
-        element: <Register />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Register />
+          </Suspense>
+        ),
       },
       {
         path: "login",
-        element: <Login />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Login />
+          </Suspense>
+        ),
       },
 
       {
         path: "chef/:id",
         element: (
-          <PrivateRoute>
-            <ChefRecipes />
-          </PrivateRoute>
+          <Suspense fallback={<Loading />}>
+            <PrivateRoute>
+              <ChefRecipes />
+            </PrivateRoute>
+          </Suspense>
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:3000/chef/${params.id}`),

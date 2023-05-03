@@ -43,17 +43,17 @@ const Navbar = ({ toggleLeftNav }) => {
       </div>
       <div className="navbar-end gap-2">
         {user ? (
-          <div className="flex gap-1 items-center">
+          <div className="flex gap-1 md:gap-4 items-center">
             <abbr title={tooltip}>
-              <div className="rounded-full border border-black w-14 h-14 cursor-pointer flex justify-center items-center">
+              <div className="rounded-full border border-black w-8 h-8 md:w-12 md:h-12 cursor-pointer flex justify-center items-center ">
               {photoURL ? (
                 <img className="rounded-full" src={photoURL} alt=""  />
                 ) : (
-                  <FaUser className="w-10 h-10 " />
+                  <FaUser className="w-6 h-6 md:w-8 md:h-8 " />
                 )}
               </div>
             </abbr>
-            <button onClick={handleSignOut} className="btn btn-primary">
+            <button onClick={handleSignOut} className="btn btn-primary btn-sm md:btn-md ">
               Logout
             </button>
           </div>
