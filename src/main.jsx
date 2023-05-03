@@ -30,7 +30,7 @@ const router = createBrowserRouter([
             <Home />
           </Suspense>
         ),
-        loader: () => fetch("http://localhost:3000/chefData"),
+        loader: () => fetch("https://cuisine-route-server.vercel.app/chefData"),
       },
       {
         path: "blogs",
@@ -75,7 +75,7 @@ const router = createBrowserRouter([
           </Suspense>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/chef/${params.id}`),
+          fetch(`https://cuisine-route-server.vercel.app/chef/${params.id}`),
       },
     ],
   },

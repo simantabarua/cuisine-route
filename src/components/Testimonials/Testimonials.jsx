@@ -13,7 +13,9 @@ const Testimonials = () => {
   useEffect(() => {
     const loadTestimonials = async () => {
       try {
-        const req = await fetch("http://localhost:3000/user-review");
+        const req = await fetch(
+          "https://cuisine-route-server.vercel.app/user-review"
+        );
         const res = await req.json();
         setReviews(res);
       } catch (error) {
@@ -69,8 +71,11 @@ const Testimonials = () => {
                 </figure>
                 <div className="card-body">
                   <h2 className="card-title">{name}</h2>
-                  <p><HiOutlineLocationMarker className="w-6 h-6 inline"/> {location}</p>
-                  <p>{ review}</p>
+                  <p>
+                    <HiOutlineLocationMarker className="w-6 h-6 inline" />{" "}
+                    {location}
+                  </p>
+                  <p>{review}</p>
                   <div className=" flex gap-2  ">
                     Rating:
                     <Rating

@@ -12,7 +12,9 @@ const FeaturedRecipes = () => {
   useEffect(() => {
     const loadFeatureRecipes = async () => {
       try {
-        const req = await fetch("http://localhost:3000/featured-recipe");
+        const req = await fetch(
+          "https://cuisine-route-server.vercel.app/featured-recipe"
+        );
         const res = await req.json();
         setFeaturedRecipes(res);
       } catch (error) {
