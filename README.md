@@ -1,52 +1,49 @@
-# HireGo
+# Cuisine Route
 
-[Live Site Link](https://hirego.netlify.app/)
+# [Live Site Link](https://cuisine-route.web.app/)
 
 ## Description
 
-HireGo is a career website where users can browse job openings, apply for jobs, and view statistics about their job application history. The website is built using ReactJS and various other technologies.
+#### This is a website that provides recipes from different chefs of a specific cuisine. Users can browse different chefs and view their recipes.
 
 ## Technologies Used
 
 - ReactJS
-- JSON
 - Tailwin CSS
-- Recharts
+- Firebase
+- Node.js
+- Express.js
+- JSON
 - contextAPI
 - React-router-dom
-- React-toastify
-
+- react-lazy-load
+- react-to-pdf
 
 ## Installation
 
-git clone this repo
-
-run yarn 
-
-then yarn dev
-
-
+To install and run the project locally, follow these steps:
+Clone this repository
+Install dependencies using npm install
+Create a .env file in the root directory and add your Firebase config keys
+Run the app using npm start
+Open http://localhost:3000 in your browser
 
 ## Features
 
-- Navbar with brand name and navigation options
-- Homepage with banner, category list section, and featured job section
-- Category section with four cards displaying category logo, name
-- View Details button on job listings that redirect to the /job/:id route
-- Apply Now button that adds job information to local storage
-- Applied Jobs page showing all applied jobs 
-- Statistics page with a chart based on assignment marks and assignment number with tooltips
-- 404 page
-- Blog page with answers to the following questions: When should you use context API? What is a custom hook? What is useRef? What is useMemo?
+- Navbar with website name, Home, Blog, and user profile picture
+- Footer present on all pages
+- Login page with email/password, Google sign-in, and GitHub sign-in options
+- Registration page with name, email, password, and photo URL fields
+- Error messages displayed on the Login page when the email/password is incorrect, password is less than 6 characters, or the email/password fields are empty
+- Chef section on the homepage with at least six cards displaying chef picture, name, years of experience, number of recipes, likes, and a "View Recipes" button
+- Two extra sections on the home pages context API? What is a custom hook? What is useRef? What is useMemo?
+- 404 page with a picture
+- Firebase config keys hidden using environment variables
+- Active route indicated in the navbar
 
 ### Bonus Features
 
-- Filter system with remote/on-site options
-- Mobile and desktop responsive homepage
-- Minimum of 10 meaningful GitHub commits
-- Footer with links
-- Active style for links on the navbar
-- Page name displayed on the banner
-- "See All Jobs" buttons
-
-
+- Mobile and desktop responsive homepage (optional tablet responsiveness)
+- Private/protected Chef Recipes page that doesn't redirect the user to the login page when reloaded after login
+- Lazy loading for chef pictures using react-lazy-load or any other package
+- Blog page with a button that downloads a PDF with information about the page using react-to-pdf package

@@ -20,10 +20,6 @@ const Blogs = () => {
       fontSize: 24,
       margin: 12,
     },
-    answer: {
-      fontSize: 12,
-      marginBottom: 40,
-    },
   });
   const BlogDocs = () => (
     <Document>
