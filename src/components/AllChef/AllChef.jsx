@@ -5,7 +5,6 @@ import ChefCard from "../ChefCard/ChefCard";
 
 const AllChef = () => {
   const chefs = useContext(ChefContext) || [];
-
   return (
     <>
       <SectionHeader

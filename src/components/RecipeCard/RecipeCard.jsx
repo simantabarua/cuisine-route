@@ -12,9 +12,13 @@ const RecipeCard = ({ recipe }) => {
   } = recipe;
   return (
     <>
-      <div className="card card-compact w-full md:w-[23rem] lg:w-96 bg-base-100 shadow-xl p-2 md:p-5 ">
-        <h4 className="text-xl mb-2">{recipeName}</h4>
-        <img src={recipeImage} alt={recipeName} className="mb-2" />
+      <div className="card card-compact  w-full my-5  shadow-xl p-2 md:p-5 ">
+        <img
+          className="h-48 object-cover w-full rounded-lg"
+          src={recipeImage}
+          alt={recipeName}
+        />
+        <h4 className="text-xl mb-2 font-bold my-2">{recipeName}</h4>
         <p>Ingredient:</p>
         <ul className="list-disc pl-5 mb-2">
           {ingredients.slice(0, 5).map((ingredient, index) => (

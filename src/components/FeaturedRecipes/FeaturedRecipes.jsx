@@ -5,20 +5,21 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import SectionHeader from "../SectionHeader/SectionHeader";
+import RecipeCard from "../RecipeCard/RecipeCard";
 
 const FeaturedRecipes = () => {
-  const [reviews, setReviews] = useState([]);
+  const [featuredRecipes, setFeaturedRecipes] = useState([]);
   useEffect(() => {
-    const loadTestimonials = async () => {
+    const loadFeatureRecipes = async () => {
       try {
-        const req = await fetch("http://localhost:3000/user-review");
+        const req = await fetch("http://localhost:3000/featured-recipe");
         const res = await req.json();
-        setReviews(res);
+        setFeaturedRecipes(res);
       } catch (error) {
         console.log(error);
       }
     };
-    loadTestimonials();
+    loadFeatureRecipes();
   }, []);
   return (
     <>
@@ -26,7 +27,7 @@ const FeaturedRecipes = () => {
         title="Featured Recipes: Discover Our Mouth-Watering Selection of Dishes"
         subtitle="Explore our selection of featured recipes that have been carefully curated by our talented chefs. From classic comfort foods to exotic international flavors, our recipes are sure to tantalize your taste buds and inspire your culinary creativity."
       />
-      <div className="relative w-full   px-5 ">
+      <div className="relative w-full px-5 ">
         <Swiper
           slidesPerView={1}
           spaceBetween={10}
@@ -51,19 +52,9 @@ const FeaturedRecipes = () => {
           }}
           className=" absolute top-0 left-0 w-full h-full "
         >
-          {reviews.map(({ id, name, location, review, rating }) => (
-            <SwiperSlide className="h-full" key={id}>
-              <div className="card h-full w-full bg-slate-200 shadow-xl max-h-full p-5">
-                <figure>
-                  <img src="" />
-                </figure>
-                <h2 className="card-title">{name} </h2>
-                <div className="card-body">
-                  <p>{location}</p>
-                  <p>{review}</p>
-                  <p>{rating}</p>
-                </div>
-              </div>
+          {featuredRecipes.map((recipe) => (
+            <SwiperSlide className="h-full" key={recipe.recipeId}>
+              <RecipeCard recipe={recipe} />
             </SwiperSlide>
           ))}
         </Swiper>

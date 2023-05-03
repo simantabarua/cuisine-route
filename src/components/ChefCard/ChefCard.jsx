@@ -16,7 +16,7 @@ const ChefCard = ({ chef }) => {
     <>
       <div className="card card-compact w-full md:w-[23rem] lg:w-96 bg-base-100 shadow-xl ">
         <figure>
-          <img className="h-80 object-cover w-full" src={chefImage} alt={chefName} />
+          <img className="h-80 object-cover w-full rounded-lg" src={chefImage} alt={chefName} />
         </figure>
         <div className="card-body font-semibold text-gray-500">
           <h2 className="card-title font-xl text-gray-800 ">
@@ -48,13 +48,3 @@ const ChefCard = ({ chef }) => {
 
 export default ChefCard;
 
-{
-  /* <Rating
-  className="text-2xl"
-  readonly
-  placeholderRating={number}
-  emptySymbol={<HiOutlineStar className="text-yellow-600  " />}
-  placeholderSymbol={<HiStar className="text-yellow-600" />}
-  fullSymbol={<HiStar />}
-/>; */
-}

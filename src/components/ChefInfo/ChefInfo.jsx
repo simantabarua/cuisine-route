@@ -22,7 +22,7 @@ const ChefInfo = ({ chef }) => {
   } = chef;
   return (
     <>
-      <div className="hero  bg-base-200">
+      <div className="hero md:mt-12 bg-base-200">
         <div className="hero-content flex-col lg:flex-row gap-10 md:px-24">
           <img
             src={chefImage}

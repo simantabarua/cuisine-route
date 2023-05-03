@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
 import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import MainLayout from "./layout/MainLayout.jsx";
@@ -12,7 +11,7 @@ import Login from "./pages/Login/Login.jsx";
 import Home from "./pages/Home/Home.jsx";
 import PrivateRoute from "./privateRoute/PrivateRoute.jsx";
 import ChefRecipes from "./pages/ChefRecipes/ChefRecipes.jsx";
-import ChefInfo from "./components/ChefInfo/ChefInfo.jsx";
+import About from "./pages/About/About.jsx";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "blogs",
         element: <Blogs />,
+      },
+      {
+        path: "about",
+        element: <About />,
       },
       {
         path: "register",

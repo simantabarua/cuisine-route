@@ -5,6 +5,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import SectionHeader from "../SectionHeader/SectionHeader";
+import Rating from "react-rating";
+import { HiOutlineLocationMarker, HiOutlineStar, HiStar } from "react-icons/hi";
 
 const Testimonials = () => {
   const [reviews, setReviews] = useState([]);
@@ -26,7 +28,7 @@ const Testimonials = () => {
         title="Satisfied Taste Buds: Hear What Our Customers Have to Say"
         subtitle="Our customers have described our dishes as 'heavenly', 'mouth-watering', and 'the best I've ever tasted'. We're thrilled to share their reviews and testimonials with you, so you can see for yourself why Cuisine Route is the ultimate destination for foodies who crave culinary inspiration and satisfaction"
       />
-      <div className="relative w-full h-[26rem]  px-5 ">
+      <div className="relative w-full   px-5 ">
         <Swiper
           slidesPerView={1}
           spaceBetween={10}
@@ -37,31 +39,48 @@ const Testimonials = () => {
           }}
           breakpoints={{
             640: {
-              slidesPerView: 2,
+              slidesPerView: 1,
               spaceBetween: 20,
             },
             768: {
-              slidesPerView: 2,
+              slidesPerView: 1,
               spaceBetween: 30,
             },
             1024: {
-              slidesPerView: 3,
+              slidesPerView: 2,
               spaceBetween: 20,
             },
           }}
           className=" absolute top-0 left-0 w-full h-full "
         >
           {reviews.map(({ id, name, location, review, rating }) => (
-            <SwiperSlide className="h-full" key={id}>
-              <div className="card h-full w-full bg-slate-200 shadow-xl max-h-full p-5">
+            <SwiperSlide className="h-full md:h-64" key={id}>
+              <div className="card md:h-[34rem] my-5 bg-base-200 shadow-xl py-4">
                 <figure>
-                  <img src="" />
+                  <img
+                    className="h-32 w-32 rounded-full block"
+                    src="https://i.ibb.co/R2SdJhB/chef8.jpg"
+                    alt="Album"
+                  />
                 </figure>
-                <h2 className="card-title">{name} </h2>
                 <div className="card-body">
-                  <p>{location}</p>
-                  <p>{review}</p>
-                  <p>{rating}</p>
+                  <h2 className="card-title">{name}</h2>
+                  <p><HiOutlineLocationMarker className="w-6 h-6 inline"/> {location}</p>
+                  <p>{ review}</p>
+                  <div className=" flex gap-2  ">
+                    Rating:
+                    <Rating
+                      className="text-2xl"
+                      readonly
+                      placeholderRating={rating}
+                      emptySymbol={
+                        <HiOutlineStar className="text-orange-600  " />
+                      }
+                      placeholderSymbol={<HiStar className="text-orange-600" />}
+                      fullSymbol={<HiStar />}
+                    />
+                    <span>{rating}</span>
+                  </div>
                 </div>
               </div>
             </SwiperSlide>
