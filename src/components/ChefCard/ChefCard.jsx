@@ -16,7 +16,7 @@ const ChefCard = ({ chef }) => {
     <>
       <div className="card card-compact w-full md:w-[23rem] lg:w-96 bg-base-100 shadow-xl ">
         <figure>
-          <img src={chefImage} alt={chefName} />
+          <img className="h-80 object-cover w-full" src={chefImage} alt={chefName} />
         </figure>
         <div className="card-body font-semibold text-gray-500">
           <h2 className="card-title font-xl text-gray-800 ">

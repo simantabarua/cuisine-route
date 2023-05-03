@@ -8,9 +8,12 @@ const AllChef = () => {
 
   return (
     <>
-      <SectionHeader title="AllChef" />
+      <SectionHeader
+        title="The Faces of Flavor"
+        subtitle="Meet Our Talented Chefs and Their Unique Styles. Your Ultimate Source for Culinary Inspiration"
+      />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3  gap-5 md:px-3 lg:px-6 place-items-center">
-        {chefs.slice(0,6).map((chef, index) => (
+        {chefs.slice(0, 6).map((chef, index) => (
           <ChefCard key={chef.id} chef={chef} />
         ))}
       </div>

@@ -25,7 +25,7 @@ const ChefInfo = ({ chef }) => {
       <div className="hero  bg-base-200">
         <div className="hero-content flex-col lg:flex-row gap-10 md:px-24">
           <img
-            src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+            src={chefImage}
             alt="Chef picture"
             className="max-w-sm rounded-lg shadow-2xl"
           />
