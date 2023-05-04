@@ -59,13 +59,13 @@ const Testimonials = () => {
           }}
           className=" absolute top-0 left-0 w-full h-full "
         >
-          {reviews.map(({ id, name, location, review, rating }) => (
+          {reviews.map(({ id, name, userImg, location, review, rating }) => (
             <SwiperSlide className="h-full md:h-64" key={id}>
               <div className="card md:h-[34rem] my-5 bg-base-200 shadow-xl py-4">
                 <figure>
                   <img
                     className="h-32 w-32 rounded-full block"
-                    src="https://i.ibb.co/R2SdJhB/chef8.jpg"
+                    src={userImg}
                     alt="Album"
                   />
                 </figure>

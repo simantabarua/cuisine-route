@@ -22,15 +22,15 @@ const ChefInfo = ({ chef }) => {
   } = chef;
   return (
     <>
-      <div className="hero md:mt-12 bg-base-200">
-        <div className="hero-content flex-col lg:flex-row gap-10 md:px-24">
+      <div className="hero mt-2 md:mt-12 bg-base-200">
+        <div className="hero-content flex-col lg:flex-row p-2 md:gap-10 md:px-24">
           <img
             src={chefImage}
             alt="Chef picture"
-            className="max-w-sm rounded-lg shadow-2xl"
+            className="w-full md:max-w-sm rounded-lg shadow-2xl"
           />
           <div className="leading-8 font-medium">
-            <h1 className="text-5xl font-bold">{chefName}</h1>
+            <h1 className="text-3xl md:text-5xl font-bold">{chefName}</h1>
             <p className="py-6">{chefDescription}</p>
             <div>
               <p className="flex gap-1 items-center ">

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { BsBookmarkCheck, BsBookmarkDash } from "react-icons/bs";
+import { HiOutlineStar, HiStar } from "react-icons/hi";
+import Rating from "react-rating";
 import Swal from "sweetalert2";
 
 const RecipeCard = ({ recipe }) => {
@@ -40,9 +42,18 @@ const RecipeCard = ({ recipe }) => {
           Cooking Method:
           <span className="font-semibold">{cooking_method}</span>
         </p>
-        <p>
-          Rating: <span className="font-semibold">{rating}</span>
-        </p>
+        <div className=" flex gap-2  ">
+          Rating:
+          <Rating
+            className="text-2xl"
+            readonly
+            placeholderRating={rating}
+            emptySymbol={<HiOutlineStar className="text-orange-600  " />}
+            placeholderSymbol={<HiStar className="text-orange-600" />}
+            fullSymbol={<HiStar />}
+          />
+          <span>{rating}</span>
+        </div>
         <div className="card-actions flex justify-between items-center ">
           <button className="btn btn-primary  btn-sm normal-case ">
             View Recipe
@@ -54,7 +65,7 @@ const RecipeCard = ({ recipe }) => {
               disabled={disabled}
             >
               {disabled ? (
-                <BsBookmarkCheck className="w-6 h-6"  />
+                <BsBookmarkCheck className="w-6 h-6" />
               ) : (
                 <BsBookmarkDash className="w-6 h-6" />
               )}

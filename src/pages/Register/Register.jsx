@@ -16,6 +16,7 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [error, setError] = useState("");
+  const [passwordError, setPasswordError] = useState(true);
   const { createUserWithEmail, auth, setLoading } = useContext(AuthContext);
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
@@ -23,6 +24,19 @@ const Register = () => {
   const regex = new RegExp(
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/
   );
+
+  const passwordHandler = (e) => {
+    const password = e.target.value;
+    if (!regex.test(password)) {
+      setPasswordError(
+        "Password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one digit, and one special character (@$!%*?&). Please try again."
+      );
+    } else {
+      setPassword(password);
+      setPasswordError(false);
+    }
+  };
+
   const handleRegister = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -133,8 +147,7 @@ const Register = () => {
                   type={showPassword ? "text" : "password"}
                   placeholder="password"
                   className="input input-bordered w-full"
-                  value={password}
-                  onChange={(event) => setPassword(event.target.value)}
+                  onChange={passwordHandler}
                   required
                 />
                 <button
@@ -146,6 +159,7 @@ const Register = () => {
                 </button>
               </div>
             </div>
+            {passwordError && <p className="text-red-500">{passwordError}</p>}
             <div className="form-control ">
               <label className="label">
                 <span className="label-text">Confirm Password</span>
@@ -168,6 +182,8 @@ const Register = () => {
                 </button>
               </div>
             </div>
+            <p className="text-red-600 my-1 font-semibold"> {error} </p>
+
             <div className="flex items-center justify-between">
               <div className="form-control">
                 <label className="cursor-pointer label justify-normal gap-x-2">
@@ -198,7 +214,6 @@ const Register = () => {
               </button>
             </div>
           </form>
-          <p className="text-red-600 my-1 font-semibold"> {error} </p>
           <div>
             <h2>
               Already have an account?

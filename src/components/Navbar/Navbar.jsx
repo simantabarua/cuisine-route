@@ -5,14 +5,14 @@ import { HiOutlineX } from "react-icons/hi";
 import { links } from "../../utils/link";
 import { AuthContext } from "../../context/AuthProvider";
 
-const Navbar = ({ toggleLeftNav }) => {
+const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   const { user, handleSignOut } = useContext(AuthContext);
-  const { displayName, email, photoURL } = user || {}
-  
+  const { displayName, email, photoURL } = user || {};
+
   const tooltip = displayName || email;
   const menuLinks = links.map(({ label, path }) => (
     <li key={path}>
@@ -46,14 +46,17 @@ const Navbar = ({ toggleLeftNav }) => {
           <div className="flex gap-1 md:gap-4 items-center">
             <abbr title={tooltip}>
               <div className="rounded-full border border-black w-8 h-8 md:w-12 md:h-12 cursor-pointer flex justify-center items-center ">
-              {photoURL ? (
-                <img className="rounded-full" src={photoURL} alt=""  />
+                {photoURL ? (
+                  <img className="rounded-full" src={photoURL} alt="" />
                 ) : (
                   <FaUser className="w-6 h-6 md:w-8 md:h-8 " />
                 )}
               </div>
             </abbr>
-            <button onClick={handleSignOut} className="btn btn-primary btn-sm md:btn-md ">
+            <button
+              onClick={handleSignOut}
+              className="btn btn-primary btn-sm md:btn-md "
+            >
               Logout
             </button>
           </div>
