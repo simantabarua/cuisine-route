@@ -6,9 +6,9 @@ import { AuthContext } from "../context/AuthProvider";
 import Loading from "../components/Loading/Loading";
 
 const MainLayout = () => {
-  const { loading } = useContext(AuthContext)
+  const { loading } = useContext(AuthContext);
   if (loading) {
-    return <Loading/>
+    return <Loading />;
   }
   return (
     <div className="min-h-screen flex flex-col">

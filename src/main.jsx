@@ -5,6 +5,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import AuthProvider from "./context/AuthProvider.jsx";
 import MainLayout from "./layout/MainLayout.jsx";
 import Loading from "./components/Loading/Loading";
+import RecipeDetails from "./components/RecipeDetails/RecipeDetails";
+
 const Error = React.lazy(() => import("./pages/ErrorPage/ErrorPage.jsx"));
 const Blogs = React.lazy(() => import("./pages/Blogs/Blogs.jsx"));
 const Register = React.lazy(() => import("./pages/Register/Register.jsx"));
@@ -30,7 +32,6 @@ const router = createBrowserRouter([
             <Home />
           </Suspense>
         ),
-        loader: () => fetch("https://cuisine-route-server.vercel.app/chefData"),
       },
       {
         path: "blogs",
@@ -76,6 +77,12 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`https://cuisine-route-server.vercel.app/chef/${params.id}`),
+      },
+      {
+        path: "recipe-details/:id",
+        element: <RecipeDetails />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/single-recipe/${params.id}`),
       },
     ],
   },

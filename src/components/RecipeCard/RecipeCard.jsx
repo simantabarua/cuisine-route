@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { BsBookmarkCheck, BsBookmarkDash } from "react-icons/bs";
 import { HiOutlineStar, HiStar } from "react-icons/hi";
+import LazyLoad from "react-lazy-load";
 import Rating from "react-rating";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const RecipeCard = ({ recipe }) => {
@@ -19,18 +21,20 @@ const RecipeCard = ({ recipe }) => {
     setDisabled(true);
     Swal.fire({
       icon: "success",
-      title: "Bookmarked",
+      title: "Marked as a favorite",
       timer: 1500,
     });
   };
   return (
     <>
       <div className="card card-compact  w-full my-5  shadow-xl p-2 md:p-5 ">
-        <img
-          className="h-48 object-cover w-full rounded-lg"
-          src={recipeImage}
-          alt={recipeName}
-        />
+        <LazyLoad>
+          <img
+            className="h-48 object-cover w-full rounded-lg"
+            src={recipeImage}
+            alt={recipeName}
+          />
+        </LazyLoad>
         <h4 className="text-xl mb-2 font-bold my-2">{recipeName}</h4>
         <p>Ingredient:</p>
         <ul className="list-disc pl-5 mb-2">
@@ -55,10 +59,12 @@ const RecipeCard = ({ recipe }) => {
           <span>{rating}</span>
         </div>
         <div className="card-actions flex justify-between items-center ">
-          <button className="btn btn-primary  btn-sm normal-case ">
-            View Recipe
-          </button>
-          <div className="tooltip" data-tip="Add to bookmark">
+          <Link to={`/recipe-details/${recipeId}`}>
+            <button className="btn btn-primary  btn-sm normal-case ">
+              View Recipe Details
+            </button>
+          </Link>
+          <div className="tooltip" data-tip="Add to favorite ">
             <button
               onClick={handleDisable}
               className="btn btn-ghost"
