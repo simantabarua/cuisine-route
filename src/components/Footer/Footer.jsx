@@ -5,7 +5,7 @@ const Footer = () => {
     <div className="p-4 md:p-10 bg-base-200 font-medium flex flex-col md:flex-row justify-center md:justify-around text-center items-center mt-5 gap-5 leading-9">
       <div>
         <p className="text-2xl font-bold">Cuisine Route</p>
-        <p>Providing reliable tech since 1992</p>
+        <p>Delivering deliciousness since 1955</p>
         <div>
           <span className="footer-title">Social</span>
           <div className="grid grid-flow-col gap-4 my-2 place-content-center">

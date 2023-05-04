@@ -166,12 +166,12 @@ const Login = () => {
           {error && (
             <p className="text-red-600 my-1 font-semibold"> {error} </p>
           )}
-          <button onClick={handleGoogleSignIn} className="btn  w-full">
-            <FaGoogle /> Login With Google
+          <button onClick={handleGoogleSignIn} className="btn btn-outline  w-full">
+            <FaGoogle className="w-6 h-6 mx-5" /> Login With Google
           </button>
 
-          <button onClick={handleGithubSignIn} className="btn  w-full">
-            <FaGithub /> Login With Github
+          <button onClick={handleGithubSignIn} className="btn btn-outline w-full">
+            <FaGithub className="w-6 h-6 mx-5"  /> Login With Github
           </button>
           <div>
             <h2>
