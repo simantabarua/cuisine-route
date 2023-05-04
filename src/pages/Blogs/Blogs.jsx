@@ -16,9 +16,13 @@ const Blogs = () => {
       paddingBottom: 65,
       paddingHorizontal: 35,
     },
-    answer: {
+    questionStyle: {
       fontSize: 24,
       margin: 12,
+    },
+    answerStyle: {
+      fontSize: 12,
+      margin: 10,
     },
   });
   const BlogDocs = () => (
@@ -26,8 +30,8 @@ const Blogs = () => {
       <Page style={styles.body}>
         {questionAnswers.map(({ question, answer }, index) => (
           <div key={index}>
-            <Text style={styles.question}>{question}</Text>
-            <Text style={styles.answer}>{answer}</Text>
+            <Text style={styles.questionStyle}>{question}</Text>
+            <Text style={styles.answerStyle}>{answer}</Text>
           </div>
         ))}
       </Page>
@@ -38,9 +42,12 @@ const Blogs = () => {
     <>
       <SectionHeader title="Blogs" />
 
+      <div className="grid grid-cols-1 gap-5 md:px-20">
       {questionAnswers?.map((questionAnswer, index) => (
         <BlogCard key={index} questionAnswer={questionAnswer} />
       ))}
+      </div>
+
       <div className="flex justify-center my-5">
         <PDFDownloadLink document={<BlogDocs />} fileName="blog.pdf">
           {({ loading }) =>
