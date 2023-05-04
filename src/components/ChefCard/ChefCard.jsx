@@ -26,7 +26,7 @@ const ChefCard = ({ chef }) => {
           </LazyLoad>
         </figure>
         <div className="card-body font-semibold text-gray-500">
-          <h2 className="card-title font-xl text-gray-800 ">
+          <h2 className="card-title font-xl text-gray-700 ">
             <GiCook /> {chefName}
           </h2>
           <p>Cuisine: {cuisine}</p>
@@ -41,10 +41,9 @@ const ChefCard = ({ chef }) => {
           </div>
           <div className="card-actions justify-end">
             <Link to={`/chef/${id}`}>
-              {" "}
               <button className="btn btn-primary w-full btn-sm normal-case ">
                 View Recipes
-              </button>{" "}
+              </button>
             </Link>
           </div>
         </div>

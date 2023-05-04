@@ -84,7 +84,7 @@ const Register = () => {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: `${errorMessage}`,
+          html: `<span style="color:red">${errorMessage}</span>`,
         });
       });
     // Handle errors here

@@ -9,8 +9,12 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { signInWithGoogle, signInWithGithub, loginWithEmailPassword, setLoading } =
-    useContext(AuthContext);
+  const {
+    signInWithGoogle,
+    signInWithGithub,
+    loginWithEmailPassword,
+    setLoading,
+  } = useContext(AuthContext);
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
   const navigate = useNavigate();
@@ -26,7 +30,7 @@ const Login = () => {
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        setLoading(false)
+        setLoading(false);
         let errorMessage;
 
         switch (error.code) {
@@ -50,7 +54,7 @@ const Login = () => {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: `${errorMessage}`,
+          html: `<span style="color:red">${errorMessage}</span>`,
         });
       });
   };
@@ -65,11 +69,11 @@ const Login = () => {
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        setLoading(false)
+        setLoading(false);
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Something went wrong!",
+          html: `<span style="color:red">${error.message}</span>`
         });
       });
   };
@@ -83,11 +87,11 @@ const Login = () => {
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        setLoading(false)
+        setLoading(false);
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Something went wrong!",
+          html: `<span style="color:red">${error.message}</span>`
         });
       });
   };
@@ -171,7 +175,7 @@ const Login = () => {
           </button>
           <div>
             <h2>
-              Don't have an account?{" "}
+              Don't have an account?
               <Link to="/register">
                 <button className="btn-link">
                   Click here to create an account

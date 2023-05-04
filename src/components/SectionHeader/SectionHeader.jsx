@@ -6,7 +6,7 @@ function SectionHeader({ title, subtitle }) {
       <h2 className="text-4xl  font-extrabold text-gray-900">
         {title}
       </h2>
-      {subtitle && <p className="mt-4 text-neutral text-gray-500">{subtitle}</p>}
+      {subtitle && <p className="mt-4  text-gray-500">{subtitle}</p>}
     </div>
   );
 }

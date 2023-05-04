@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import SectionHeader from "../SectionHeader/SectionHeader";
 import ChefCard from "../ChefCard/ChefCard";
 
@@ -18,7 +18,7 @@ const AllChef = () => {
     };
     loadAllChef();
   }, []);
-  
+
   return (
     <>
       <SectionHeader

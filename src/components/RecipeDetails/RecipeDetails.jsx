@@ -31,7 +31,7 @@ const RecipeDetails = () => {
               ))}
             </ul>
             <p>
-              <span className="font-bold">Cooking Method:</span>{" "}
+              <span className="font-bold">Cooking Method:</span>
               {cooking_method}
             </p>
           </div>

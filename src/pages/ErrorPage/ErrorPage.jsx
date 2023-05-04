@@ -21,7 +21,7 @@ const ErrorPage = () => {
             <button className="btn btn-primary  m-2">Back to Home</button>
           </Link>
         </div>
-        <div>
+        <div className="bg-gray-100">
         <Lottie animationData={ErrorAnimation}  />
        </div>
       </div>

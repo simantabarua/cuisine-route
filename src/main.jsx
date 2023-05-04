@@ -82,7 +82,7 @@ const router = createBrowserRouter([
         path: "recipe-details/:id",
         element: <RecipeDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/single-recipe/${params.id}`),
+          fetch(`https://cuisine-route-server.vercel.app/single-recipe/${params.id}`),
       },
     ],
   },

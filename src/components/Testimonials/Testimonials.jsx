@@ -72,7 +72,7 @@ const Testimonials = () => {
                 <div className="card-body">
                   <h2 className="card-title">{name}</h2>
                   <p>
-                    <HiOutlineLocationMarker className="w-6 h-6 inline" />{" "}
+                    <HiOutlineLocationMarker className="w-6 h-6 inline" />
                     {location}
                   </p>
                   <p>{review}</p>
