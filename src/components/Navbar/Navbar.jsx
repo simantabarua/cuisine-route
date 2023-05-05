@@ -97,7 +97,7 @@ const Navbar = () => {
         {user ? (
           <div className="flex gap-1 md:gap-4 items-center">
             <abbr title={tooltip}>
-              <div className="rounded-full border border-black w-6 h-6 md:w-12 md:h-12 cursor-pointer flex justify-center items-center ">
+              <div className="rounded-full border border-black w-8 h-8 md:w-12 md:h-12 cursor-pointer flex justify-center items-center ">
                 {photoURL ? (
                   <img className="rounded-full" src={photoURL} alt="" />
                 ) : (

@@ -33,7 +33,7 @@ const MyFavoriteRecipes = () => {
       <SectionHeader title=" Favorite Recipe will Show here" />
       {filteredRecipe.length === 0 ? (
         <div className="flex justify-center items-center flex-col my-5 ">
-          <h2 className="font-bold text-2xl mt-5">
+          <h2 className="font-bold text-2xl text-center mt-5">
             hmm... It looks like you haven't entered your favorite recipe yet
           </h2>
           <div className="flex gap-2 items-center justify-center flex-col md:flex-row my-5">
