@@ -7,6 +7,7 @@ import MainLayout from "./layout/MainLayout.jsx";
 import Loading from "./components/Loading/Loading";
 import RecipeDetails from "./components/RecipeDetails/RecipeDetails";
 import MyFavoriteRecipes from "./pages/MyFavoriteRecipes/MyFavoriteRecipes";
+import Recipes from "./pages/Recipes/Recipes";
 
 const Error = React.lazy(() => import("./pages/ErrorPage/ErrorPage.jsx"));
 const Blogs = React.lazy(() => import("./pages/Blogs/Blogs.jsx"));
@@ -92,6 +93,15 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyFavoriteRecipes />
+          </PrivateRoute>
+        ),
+        loader: () => fetch("http://localhost:3000/recipes"),
+      },
+      {
+        path: "/recipes",
+        element: (
+          <PrivateRoute>
+            <Recipes />
           </PrivateRoute>
         ),
         loader: () => fetch("http://localhost:3000/recipes"),
