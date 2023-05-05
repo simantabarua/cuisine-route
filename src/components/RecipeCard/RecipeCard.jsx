@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsBookmarkCheck, BsBookmarkDash } from "react-icons/bs";
 import { HiOutlineStar, HiStar } from "react-icons/hi";
 import LazyLoad from "react-lazy-load";
 import Rating from "react-rating";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { addToFavorites, getFavoriteRecipes } from "../../utils/localstorage";
 
 const RecipeCard = ({ recipe }) => {
   const [disabled, setDisabled] = useState(false);
@@ -17,7 +18,10 @@ const RecipeCard = ({ recipe }) => {
     rating,
   } = recipe;
 
-  const handleDisable = () => {
+ 
+
+  const handleAddToFavorite = () => {
+    addToFavorites(recipeId);
     setDisabled(true);
     Swal.fire({
       icon: "success",
@@ -25,6 +29,8 @@ const RecipeCard = ({ recipe }) => {
       timer: 1500,
     });
   };
+  
+
   return (
     <>
       <div className="card card-compact  w-full my-5 bg-base-200  shadow-xl p-2 md:p-5 ">
@@ -66,7 +72,7 @@ const RecipeCard = ({ recipe }) => {
           </Link>
           <div className="tooltip" data-tip="Add to favorite ">
             <button
-              onClick={handleDisable}
+              onClick={handleAddToFavorite}
               className="btn btn-ghost"
               disabled={disabled}
             >

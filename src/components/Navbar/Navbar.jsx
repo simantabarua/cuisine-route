@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaBars, FaUser } from "react-icons/fa";
-import { HiOutlineX } from "react-icons/hi";
+import { HiMoon, HiOutlineX, HiSun } from "react-icons/hi";
 import { CiDark, CiLight } from "react-icons/ci";
 import { links } from "../../utils/link";
 import { AuthContext } from "../../context/AuthProvider";
@@ -39,8 +39,14 @@ const Navbar = () => {
             {isMenuOpen ? <HiOutlineX /> : <FaBars />}
           </button>
           {isMenuOpen && (
+            // for mobile
             <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
               {menuLinks}
+              {user && (
+                <Link to="/my-favorite-recipes">
+                  <li>My favorites</li>
+                </Link>
+              )}
             </ul>
           )}
         </div>
@@ -51,24 +57,36 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-center hidden md:flex">
-        <ul className="gap-5 menu-horizontal font-bold ">{menuLinks}</ul>
+        <ul className="gap-5 menu-horizontal font-bold ">
+          {/* For desktop  */}
+          {menuLinks}
+          {user && (
+            <Link to="/my-favorite-recipes">
+              <li>My favorites</li>
+            </Link>
+          )}
+        </ul>
       </div>
       <div className="navbar-end  flex items-center gap-2">
+        {/* Dark mode */}
         <div>
           {isDarkMode ? (
             <button
               className="btn-circle transition duration-400 transform rotate-45"
               data-set-theme="light"
             >
-              <CiLight
-                className="w-8 h-8"
+              <HiSun
+                className="w-10 h-10"
                 onClick={() => setIsDarkMode(!isDarkMode)}
               />
             </button>
           ) : (
-            <button className="btn-circle transition duration-400 " data-set-theme="dark">
-              <CiDark
-                className="w-8 h-8 "
+            <button
+              className="btn-circle transition duration-400 "
+              data-set-theme="dark"
+            >
+              <HiMoon
+                className="w-10 h-10 "
                 onClick={() => setIsDarkMode(!isDarkMode)}
               />
             </button>
