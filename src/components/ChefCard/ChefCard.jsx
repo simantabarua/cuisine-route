@@ -15,18 +15,18 @@ const ChefCard = ({ chef }) => {
   } = chef;
   return (
     <>
-      <div className="card card-compact w-full md:w-[23rem] lg:w-96 bg-base-100 shadow-xl ">
+      <div className="card card-compact w-full md:w-[23rem] lg:w-96 bg-base-200 shadow-xl p-2 ">
         <figure>
           <LazyLoad>
             <img
-              className="h-80 object-cover w-full rounded-lg"
+              className="h-80 object-cover w-ful md:w-96 rounded-lg"
               src={chefImage}
               alt={chefName}
             />
           </LazyLoad>
         </figure>
-        <div className="card-body font-semibold text-gray-500">
-          <h2 className="card-title font-xl text-gray-700 ">
+        <div className="card-body font-semibold">
+          <h2 className="card-title font-xl">
             <GiCook /> {chefName}
           </h2>
           <p>Cuisine: {cuisine}</p>

@@ -27,7 +27,7 @@ const RecipeCard = ({ recipe }) => {
   };
   return (
     <>
-      <div className="card card-compact  w-full my-5  shadow-xl p-2 md:p-5 ">
+      <div className="card card-compact  w-full my-5 bg-base-200  shadow-xl p-2 md:p-5 ">
         <LazyLoad>
           <img
             className="h-48 object-cover w-full rounded-lg"

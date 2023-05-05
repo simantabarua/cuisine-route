@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import Swal from "sweetalert2";
 
@@ -10,6 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const {
+    user,
     signInWithGoogle,
     signInWithGithub,
     loginWithEmailPassword,
@@ -18,6 +19,7 @@ const Login = () => {
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
   const navigate = useNavigate();
+
   const handleLogin = (e) => {
     e.preventDefault();
     loginWithEmailPassword(email, password)
@@ -73,7 +75,7 @@ const Login = () => {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          html: `<span style="color:red">${error.message}</span>`
+          html: `<span style="color:red">${error.message}</span>`,
         });
       });
   };
@@ -91,16 +93,22 @@ const Login = () => {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          html: `<span style="color:red">${error.message}</span>`
+          html: `<span style="color:red">${error.message}</span>`,
         });
       });
   };
+  console.log(user);
+
+  if (user) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <>
-      <div className=" flex flex-col items-center justify-center bg-gray-50 md:py-12 px-4 sm:px-6 lg:px-8">
+      <div className=" flex flex-col items-center justify-center bg-base-100 md:py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8 card">
           <div>
-            <h2 className="mt-6 text-center text-md md:text-lg font-extrabold text-gray-900">
+            <h2 className="mt-6 text-center text-md md:text-lg font-extrabold">
               Log in to your account
             </h2>
           </div>
@@ -166,12 +174,18 @@ const Login = () => {
           {error && (
             <p className="text-red-600 my-1 font-semibold"> {error} </p>
           )}
-          <button onClick={handleGoogleSignIn} className="btn btn-outline  w-full">
+          <button
+            onClick={handleGoogleSignIn}
+            className="btn btn-outline  w-full"
+          >
             <FaGoogle className="w-6 h-6 mx-5" /> Login With Google
           </button>
 
-          <button onClick={handleGithubSignIn} className="btn btn-outline w-full">
-            <FaGithub className="w-6 h-6 mx-5"  /> Login With Github
+          <button
+            onClick={handleGithubSignIn}
+            className="btn btn-outline w-full"
+          >
+            <FaGithub className="w-6 h-6 mx-5" /> Login With Github
           </button>
           <div>
             <h2>

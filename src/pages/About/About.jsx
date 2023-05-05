@@ -3,7 +3,7 @@ import AboutAnimation from "./../../../public/about.json";
 import Lottie from "lottie-react";
 const About = () => {
   return (
-    <div className="bg-gray-50">
+    <div className="bg-base-100">
       <div className="max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <h1 className="text-4xl text-center md:text-7xl font-bold">About Us</h1>
         <div className="lg:grid grid-cols-1 lg:gap-8 place-items-center">
@@ -12,7 +12,7 @@ const About = () => {
           </div>
           <div>
             <div>
-              <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+              <h2 className="text-3xl font-extrabold  sm:text-4xl">
                 Our Mission
               </h2>
               <p className="mt-3 max-w-3xl text-lg text-gray-500">
@@ -23,7 +23,7 @@ const About = () => {
               </p>
             </div>
             <div className="mt-12 lg:mt-0">
-              <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+              <h2 className="text-3xl font-extrabold  sm:text-4xl">
                 Our Team
               </h2>
               <p className="mt-3 max-w-3xl text-lg text-gray-500">
@@ -34,7 +34,7 @@ const About = () => {
               </p>
             </div>
             <div>
-              <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+              <h2 className="text-3xl font-extrabold  sm:text-4xl">
                 Our Values
               </h2>
               <p className="mt-3 max-w-3xl text-lg text-gray-500">
@@ -45,7 +45,7 @@ const About = () => {
               </p>
             </div>
             <div>
-              <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+              <h2 className="text-3xl font-extrabold  sm:text-4xl">
                 Community Engagement
               </h2>
               <p className="mt-3 max-w-3xl text-lg text-gray-500">

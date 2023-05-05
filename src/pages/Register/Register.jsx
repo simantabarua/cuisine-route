@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthProvider";
@@ -17,7 +17,8 @@ const Register = () => {
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [error, setError] = useState("");
   const [passwordError, setPasswordError] = useState(true);
-  const { createUserWithEmail, auth, setLoading } = useContext(AuthContext);
+  const { createUserWithEmail, auth, setLoading, user } =
+    useContext(AuthContext);
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
   const navigate = useNavigate();
@@ -89,6 +90,10 @@ const Register = () => {
       });
     // Handle errors here
   };
+
+  if (user) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <>

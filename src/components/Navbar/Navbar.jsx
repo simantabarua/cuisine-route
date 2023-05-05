@@ -1,9 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaBars, FaUser } from "react-icons/fa";
 import { HiOutlineX } from "react-icons/hi";
+import { CiDark, CiLight } from "react-icons/ci";
 import { links } from "../../utils/link";
 import { AuthContext } from "../../context/AuthProvider";
+import { themeChange } from "theme-change";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,6 +14,7 @@ const Navbar = () => {
   };
   const { user, handleSignOut } = useContext(AuthContext);
   const { displayName, email, photoURL } = user || {};
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const tooltip = displayName || email;
   const menuLinks = links.map(({ label, path }) => (
@@ -19,6 +22,11 @@ const Navbar = () => {
       <NavLink to={path}>{label}</NavLink>
     </li>
   ));
+  useEffect(() => {
+    themeChange(false);
+    const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
+    setIsDarkMode(prefersDarkMode.matches);
+  }, []);
 
   return (
     <div className="navbar bg-base-200 md:px-24">
@@ -36,12 +44,36 @@ const Navbar = () => {
             </ul>
           )}
         </div>
-        <h2 className="font-bold text-md md:text-2xl ">Cuisine Route</h2>
+        <Link to="/">
+          <h2 className="font-bold text-md md:text-2xl cursor-pointer ">
+            Cuisine Route
+          </h2>
+        </Link>
       </div>
       <div className="navbar-center hidden md:flex">
         <ul className="gap-5 menu-horizontal font-bold ">{menuLinks}</ul>
       </div>
-      <div className="navbar-end gap-2">
+      <div className="navbar-end  flex items-center gap-2">
+        <div>
+          {isDarkMode ? (
+            <button
+              className="btn-circle transition duration-400 transform rotate-45"
+              data-set-theme="light"
+            >
+              <CiLight
+                className="w-8 h-8"
+                onClick={() => setIsDarkMode(!isDarkMode)}
+              />
+            </button>
+          ) : (
+            <button className="btn-circle transition duration-400 " data-set-theme="dark">
+              <CiDark
+                className="w-8 h-8 "
+                onClick={() => setIsDarkMode(!isDarkMode)}
+              />
+            </button>
+          )}
+        </div>
         {user ? (
           <div className="flex gap-1 md:gap-4 items-center">
             <abbr title={tooltip}>
