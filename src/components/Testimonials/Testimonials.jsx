@@ -27,7 +27,7 @@ const Testimonials = () => {
   return (
     <>
       <SectionHeader
-        title="Satisfied Taste Buds: Hear What Our Customers Have to Say"
+        title="Hear What Our Customers Have to Say"
         subtitle="Our customers have described our dishes as 'heavenly', 'mouth-watering', and 'the best I've ever tasted'. We're thrilled to share their reviews and testimonials with you, so you can see for yourself why Cuisine Route is the ultimate destination for foodies who crave culinary inspiration and satisfaction"
       />
       <div className="relative w-full   px-5 ">

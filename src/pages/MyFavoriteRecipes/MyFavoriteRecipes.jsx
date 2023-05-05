@@ -5,11 +5,13 @@ import {
 } from "../../utils/localstorage";
 import { Link, useLoaderData } from "react-router-dom";
 import FavoriteRecipeCard from "../../components/FavoriteRecipeCard/FavoriteRecipeCard";
+import SectionHeader from "../../components/SectionHeader/SectionHeader";
 
 const MyFavoriteRecipes = () => {
   const recipes = useLoaderData();
   const [filteredRecipe, setFilteredRecipe] = useState([]);
   const favoriteRecipes = getFavoriteRecipes();
+
   useEffect(() => {
     const getFilteredRecipes = () => {
       const filteredRecipes = [];
@@ -20,7 +22,7 @@ const MyFavoriteRecipes = () => {
       setFilteredRecipe(filteredRecipes);
     };
     getFilteredRecipes();
-  }, [filteredRecipe]);
+  }, [favoriteRecipes]);
 
   const handleRemoveFromFavorites = (recipeId) => {
     removeFromFavorites(recipeId);
@@ -28,9 +30,7 @@ const MyFavoriteRecipes = () => {
 
   return (
     <div>
-      <h1 className="text-2xl text-center md:text-4xl font-bold my-2 md:my-10">
-        Favorite Recipe will Show here
-      </h1>
+      <SectionHeader title=" Favorite Recipe will Show here" />
       {filteredRecipe.length === 0 ? (
         <div className="flex justify-center items-center flex-col my-5 ">
           <h2 className="font-bold text-2xl mt-5">
@@ -49,7 +49,7 @@ const MyFavoriteRecipes = () => {
         <div className="w-full max-w-4xl  mx-auto h-full flex items-center justify-center flex-col gap-2 ">
           {filteredRecipe.map((recipe) => (
             <FavoriteRecipeCard
-              key={recipe.id}
+              key={recipe.recipeId}
               recipe={recipe}
               handleRemoveFromFavorites={handleRemoveFromFavorites}
             />

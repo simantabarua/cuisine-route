@@ -2,10 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaBars, FaUser } from "react-icons/fa";
 import { HiMoon, HiOutlineX, HiSun } from "react-icons/hi";
-import { CiDark, CiLight } from "react-icons/ci";
+import {} from "react-icons/hi";
 import { links } from "../../utils/link";
 import { AuthContext } from "../../context/AuthProvider";
 import { themeChange } from "theme-change";
+import { GiAerialSignal } from "react-icons/gi";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,11 +30,11 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="navbar bg-base-200 md:px-24">
-      <div className="navbar-start gap-2 ">
+    <div className="navbar  bg-base-200 lg:px-24 w-full">
+      <div className="navbar-start">
         <div className="dropdown md:hidden">
           <button
-            className="bg-red-100 btn-circle flex justify-center items-center"
+            className="btn-circle btn-sm flex justify-center items-center"
             onClick={toggleMenu}
           >
             {isMenuOpen ? <HiOutlineX /> : <FaBars />}
@@ -51,13 +52,14 @@ const Navbar = () => {
           )}
         </div>
         <Link to="/">
-          <h2 className="font-bold text-md md:text-2xl cursor-pointer ">
-            Cuisine Route
+          <h2 className="font-bold text-sm sm:text-2xl cursor-pointer ">
+            Cuisine <span className="text-indigo-600 ">Route </span>
+            <GiAerialSignal className="sm:inline animate-pulse hidden " />
           </h2>
         </Link>
       </div>
       <div className="navbar-center hidden md:flex">
-        <ul className="gap-5 menu-horizontal font-bold ">
+        <ul className="gap-2 lg:gap-5 menu-horizontal font-semibold ">
           {/* For desktop  */}
           {menuLinks}
           {user && (
@@ -67,16 +69,16 @@ const Navbar = () => {
           )}
         </ul>
       </div>
-      <div className="navbar-end  flex items-center gap-2">
+      <div className="navbar-end flex items-center md:gap-2  md:flex-row ">
         {/* Dark mode */}
-        <div>
+        <div className="">
           {isDarkMode ? (
             <button
-              className="btn-circle transition duration-400 transform rotate-45"
+              className="btn-circle transition duration-400 transform rotate-45  "
               data-set-theme="light"
             >
               <HiSun
-                className="w-10 h-10"
+                className="sm:w-10 sm:h-10 inline"
                 onClick={() => setIsDarkMode(!isDarkMode)}
               />
             </button>
@@ -86,7 +88,7 @@ const Navbar = () => {
               data-set-theme="dark"
             >
               <HiMoon
-                className="w-10 h-10 "
+                className="sm:w-10 sm:h-10 inline"
                 onClick={() => setIsDarkMode(!isDarkMode)}
               />
             </button>
@@ -95,7 +97,7 @@ const Navbar = () => {
         {user ? (
           <div className="flex gap-1 md:gap-4 items-center">
             <abbr title={tooltip}>
-              <div className="rounded-full border border-black w-8 h-8 md:w-12 md:h-12 cursor-pointer flex justify-center items-center ">
+              <div className="rounded-full border border-black w-6 h-6 md:w-12 md:h-12 cursor-pointer flex justify-center items-center ">
                 {photoURL ? (
                   <img className="rounded-full" src={photoURL} alt="" />
                 ) : (
@@ -105,14 +107,14 @@ const Navbar = () => {
             </abbr>
             <button
               onClick={handleSignOut}
-              className="btn btn-primary btn-sm md:btn-md "
+              className="btn btn-primary btn-sm sm:btn-md  normal-case"
             >
               Logout
             </button>
           </div>
         ) : (
           <Link to="/login">
-            <button className="btn btn-primary">Login</button>
+            <button className="btn btn-primary normal-case">Login</button>
           </Link>
         )}
       </div>

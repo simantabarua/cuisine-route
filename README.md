@@ -26,7 +26,7 @@ Clone this repository
 Install dependencies using npm install
 Create a .env file in the root directory and add your Firebase config keys
 Run the app using npm start
-Open http://localhost:3000 in your browser
+Openhttp://localhost:5000 in your browser
 
 ## Features
 

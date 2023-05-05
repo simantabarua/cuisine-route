@@ -95,7 +95,7 @@ const router = createBrowserRouter([
             <MyFavoriteRecipes />
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:3000/recipes"),
+        loader: () => fetch("https://cuisine-route-server.vercel.app/recipes"),
       },
       {
         path: "/recipes",
@@ -104,7 +104,7 @@ const router = createBrowserRouter([
             <Recipes />
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:3000/recipes"),
+        loader: () => fetch("https://cuisine-route-server.vercel.app/recipes"),
       },
     ],
   },
