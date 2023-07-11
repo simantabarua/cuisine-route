@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { removeFromFavorites } from "../../utils/localstorage";
 
 function FavoriteRecipeCard({ recipe, handleRemoveFromFavorites }) {
   const { recipeId, recipeName, recipeImage, rating } = recipe;
